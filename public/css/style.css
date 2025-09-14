@@ -1,0 +1,505 @@
+/* ---------------------------
+   /public/css/style.css
+   Premium minimalist + animated
+   --------------------------- */
+
+/* Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@500;700&display=swap");
+
+:root {
+  --bg-0: #fbfbfd;
+  --bg-1: #f4f7fb;
+  --card: #ffffff;
+  --muted: #6b7280;
+  --text: #0f1724; /* deep navy */
+  --accent-1: #2b6ef6; /* bright blue */
+  --accent-2: #9b7cff; /* purple */
+  --gold-1: #d4af37;
+  --glass: rgba(255, 255, 255, 0.6);
+  --shadow-1: 0 6px 24px rgba(16, 24, 40, 0.08);
+  --shadow-2: 0 14px 40px rgba(16, 24, 40, 0.12);
+  --radius-lg: 14px;
+}
+
+/* Basic reset */
+* {
+  box-sizing: border-box;
+}
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: "Inter", sans-serif;
+  background: linear-gradient(180deg, var(--bg-0) 0%, var(--bg-1) 100%);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.6;
+  scroll-behavior: smooth;
+  padding-bottom: 40px;
+}
+
+/* --- Page width --- */
+section {
+  max-width: 980px;
+  margin: 28px auto;
+  padding: 48px 28px;
+}
+
+/* Stagger reveal for sections (simple) */
+section {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeUp 0.7s cubic-bezier(0.2, 0.9, 0.3, 1) forwards;
+}
+section:nth-of-type(1) {
+  animation-delay: 0.05s;
+}
+section:nth-of-type(2) {
+  animation-delay: 0.12s;
+}
+section:nth-of-type(3) {
+  animation-delay: 0.2s;
+}
+section:nth-of-type(4) {
+  animation-delay: 0.28s;
+}
+section:nth-of-type(5) {
+  animation-delay: 0.36s;
+}
+section:nth-of-type(6) {
+  animation-delay: 0.44s;
+}
+section:nth-of-type(7) {
+  animation-delay: 0.52s;
+}
+section:nth-of-type(8) {
+  animation-delay: 0.6s;
+}
+
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ---------------- Hero ---------------- */
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 72vh;
+  text-align: center;
+  position: relative;
+  overflow: visible;
+  padding-top: 60px;
+  padding-bottom: 60px;
+}
+
+/* decorative soft shape behind hero */
+.hero::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: -6%;
+  width: 760px;
+  height: 420px;
+  background: radial-gradient(
+      circle at 30% 30%,
+      rgba(43, 110, 246, 0.12),
+      transparent 15%
+    ),
+    radial-gradient(
+      circle at 70% 70%,
+      rgba(155, 124, 255, 0.1),
+      transparent 18%
+    );
+  filter: blur(40px);
+  z-index: 0;
+  pointer-events: none;
+}
+/* Ensure canvas has a fixed height/width */
+#skillsChart {
+  width: 100% !important;
+  height: 400px !important;
+  margin: 0 auto;
+  display: block;
+}
+
+/* Skills section tweaks */
+.skills {
+  padding: 40px 20px !important;
+  text-align: center;
+}
+
+/* profile image */
+.profile-pic {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid rgba(255, 255, 255, 0.6);
+  box-shadow: var(--shadow-2);
+  background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+  padding: 4px;
+  z-index: 2;
+  animation: float 6s ease-in-out infinite;
+}
+
+/* floating */
+@keyframes float {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+/* Title (typewriter) */
+.typewriter {
+  font-family: "Playfair Display", serif;
+  font-size: clamp(2rem, 5vw, 3rem);
+  margin: 18px 0 6px;
+  letter-spacing: 0.4px;
+  position: relative;
+  display: inline-block;
+  z-index: 2;
+  color: var(--text);
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 3px solid rgba(0, 0, 0, 0.12);
+  width: 12ch; /* adjust if your name longer */
+  animation: typing 1.6s steps(12, end), blink 0.75s step-end infinite;
+}
+
+/* typing & blink */
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 12ch;
+  }
+}
+@keyframes blink {
+  50% {
+    border-color: transparent;
+  }
+}
+
+/* subtitle */
+.subtitle {
+  margin: 8px 0 0;
+  color: var(--muted);
+  font-weight: 500;
+  z-index: 2;
+}
+
+/* --- Social icons row --- */
+.social-links {
+  display: flex;
+  gap: 18px;
+  justify-content: center;
+  margin-top: 18px;
+  z-index: 2;
+}
+
+/* icon button */
+.icon-btn {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: inline-grid;
+  place-items: center;
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+  transition: transform 350ms cubic-bezier(0.2, 0.9, 0.3, 1), box-shadow 350ms;
+  box-shadow: 0 6px 22px rgba(11, 17, 36, 0.08);
+  background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* icon image centered; force white icon look */
+.icon-btn img {
+  width: 58%;
+  height: 58%;
+  object-fit: contain;
+  /* Try to make icons appear white on gradient circle.
+     If your PNG is colored weirdly, remove filters or use SVG icons. */
+  filter: brightness(0) invert(1) drop-shadow(0 1px 1px rgba(0, 0, 0, 0.08));
+  transition: transform 300ms;
+}
+
+/* hover animation */
+.icon-btn:hover {
+  transform: translateY(-6px) rotate(-6deg) scale(1.06);
+  box-shadow: 0 18px 42px rgba(43, 110, 246, 0.14);
+}
+
+/* small ring pulse on hover */
+.icon-btn::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  left: 0;
+  top: 0;
+  transition: opacity 300ms, transform 300ms;
+  opacity: 0;
+  transform: scale(0.9);
+  background: radial-gradient(
+    circle at 30% 30%,
+    rgba(255, 255, 255, 0.06),
+    transparent 30%
+  );
+}
+.icon-btn:hover::after {
+  opacity: 1;
+  transform: scale(1.18);
+}
+
+/* make specific icon colors (optional) */
+.icon-btn.linkedin {
+  background: linear-gradient(135deg, #0a66c2, #2b66d6);
+}
+.icon-btn.github {
+  background: linear-gradient(135deg, #0f1724, #374151);
+}
+.icon-btn.instagram {
+  background: linear-gradient(135deg, #f58529, #dd2a7b, #8134af);
+}
+.icon-btn.facebook {
+  background: linear-gradient(135deg, #1877f2, #2d6df6);
+}
+
+/* ---------------- Sections as cards ---------------- */
+.about,
+.skills,
+.projects,
+.experience,
+.contact {
+  background: var(--card);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-1);
+  padding: 34px;
+}
+
+/* Section headings */
+.about h2,
+.skills h2,
+.projects h2,
+.experience h2,
+.contact h2 {
+  font-family: "Playfair Display", serif;
+  font-weight: 600;
+  font-size: 1.6rem;
+  margin-bottom: 12px;
+  color: var(--text);
+}
+
+/* paragraph */
+.about p {
+  color: var(--muted);
+  margin-top: 8px;
+  font-size: 1rem;
+}
+
+/* skills list inline */
+.skills ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding-left: 0;
+  list-style: none;
+  margin: 6px 0 0;
+}
+.skills li {
+  background: linear-gradient(
+    180deg,
+    rgba(11, 17, 36, 0.03),
+    rgba(11, 17, 36, 0.02)
+  );
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-weight: 600;
+  color: var(--text);
+  font-size: 0.95rem;
+  box-shadow: 0 4px 14px rgba(11, 17, 36, 0.03);
+}
+
+/* timeline */
+.timeline {
+  position: relative;
+  padding-left: 22px;
+}
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 10px;
+  top: 8px;
+  bottom: 8px;
+  width: 3px;
+  background: linear-gradient(180deg, var(--accent-1), var(--accent-2));
+  border-radius: 3px;
+}
+.timeline-item {
+  position: relative;
+  padding: 12px 18px;
+  margin: 12px 0;
+  background: transparent;
+}
+.timeline-item::before {
+  content: "";
+  position: absolute;
+  left: -3px;
+  top: 14px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--card);
+  border: 4px solid white;
+  box-shadow: 0 6px 18px rgba(11, 17, 36, 0.08),
+    0 0 0 4px rgba(43, 110, 246, 0.06);
+}
+.timeline .date {
+  display: inline-block;
+  font-size: 0.9rem;
+  color: var(--muted);
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+/* projects */
+.projects ul {
+  padding-left: 1rem;
+}
+.projects li {
+  margin-bottom: 12px;
+  color: var(--muted);
+}
+
+/* contact form */
+.contact form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 8px;
+}
+.contact input[type="text"],
+.contact input[type="email"],
+.contact textarea {
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid rgba(15, 23, 36, 0.06);
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.85),
+    rgba(255, 255, 255, 0.95)
+  );
+  box-shadow: 0 6px 14px rgba(11, 17, 36, 0.04);
+  font-size: 0.98rem;
+  color: var(--text);
+  resize: vertical;
+}
+.contact textarea {
+  min-height: 120px;
+}
+.contact input:focus,
+.contact textarea:focus {
+  outline: none;
+  box-shadow: 0 8px 28px rgba(43, 110, 246, 0.08);
+  border-color: rgba(43, 110, 246, 0.22);
+}
+
+/* CTA button */
+.contact button {
+  margin-top: 6px;
+  align-self: flex-start;
+  padding: 10px 18px;
+  border-radius: 10px;
+  background: linear-gradient(90deg, var(--gold-1), #c79b2f);
+  color: white;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.25s, box-shadow 0.25s;
+  box-shadow: 0 10px 30px rgba(212, 175, 55, 0.12);
+}
+.contact button:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 44px rgba(212, 175, 55, 0.18);
+}
+
+/* footer */
+footer {
+  text-align: center;
+  margin-top: 26px;
+  color: var(--muted);
+}
+
+/* small screens */
+@media (max-width: 720px) {
+  .profile-pic {
+    width: 96px;
+    height: 96px;
+  }
+  .typewriter {
+    font-size: 1.6rem;
+    width: 10ch;
+  }
+  .icon-btn {
+    width: 48px;
+    height: 48px;
+  }
+  section {
+    padding: 28px 20px;
+    margin: 18px auto;
+  }
+  .skills ul {
+    gap: 10px;
+  }
+  .timeline::before {
+    left: 6px;
+  }
+  .timeline-item::before {
+    left: -6px;
+  }
+}
+
+/* reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .typewriter,
+  .profile-pic,
+  .icon-btn,
+  section {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* small util */
+.center {
+  text-align: center;
+}
+
+.skills {
+  text-align: center;
+  padding: 50px 20px;
+}
+
+.skills canvas {
+  max-width: 500px;
+  margin: 0 auto;
+  display: block;
+}
