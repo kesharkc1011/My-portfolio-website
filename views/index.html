@@ -131,12 +131,30 @@
     <!-- CONTACT -->
     <section class="contact">
       <h2>Contact Me</h2>
-      <form id="/contactForm" action="/contact" method="POST">
+      <form id="/contactForm" action="/send" method="POST">
         <input type="text" name="name" placeholder="Your Name" required />
         <input type="email" name="email" placeholder="Your Email" required />
         <textarea name="message" placeholder="Your Message" required></textarea>
         <button type="submit">Send Message</button>
       </form>
+      <script>
+        document
+          .getElementById("contactForm")
+          .addEventListener("submit", async function (e) {
+            e.preventDefault();
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+
+            const res = await fetch("/send", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(data),
+            });
+
+            const result = await res.json();
+            alert(result.message);
+          });
+      </script>
     </section>
 
     <!-- FOOTER -->

@@ -1,4 +1,5 @@
 {
+  "$schema": "./node_modules/package-json-schema/schema.json",
   "name": "your-portfolio",
   "version": "1.0.0",
   "main": "server.js",
@@ -11,6 +12,7 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "dotenv": "^17.2.2",
     "express": "^5.1.0",
     "nodemailer": "^7.0.6"
   }

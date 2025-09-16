@@ -1,10 +1,11 @@
 const express = require("express");
 const path = require("path");
-
+require("dotenv").config();
+console.log("Loaded EMAIL_USER:", process.env.EMAIL_USER);
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-//const nodemailer = requie("nodemailer");
+const nodemailer = require("nodemailer");
 
 // Middleware to serve static files from /public
 app.use(express.static(path.join(__dirname, "public")));
@@ -18,12 +19,41 @@ app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "views", "index.html"));
 });
 
+// Contact form route
+app.post("/send", async (req, res) => {
+  const { name, email, message } = req.body;
+
+  try {
+    const transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS,
+      },
+    });
+
+    const mailOptions = {
+      from: process.env.EMAIL_USER, // must be your Gmail
+      replyTo: email, // so replies go to user
+      to: process.env.EMAIL_USER, // receiving inbox (your Gmail)
+      subject: `Portfolio Contact: ${name}`,
+      text: `From: ${name} <${email}>\n\n${message}`, // clearer formatting
+    };
+
+    await transporter.sendMail(mailOptions);
+    res.json({ success: true, message: "Message sent successfully" });
+  } catch (error) {
+    console.error("❌ Email error:", error);
+    res.status(500).json({ success: false, message: "Message failed to send" });
+  }
+});
+
 // Start server
 app.listen(PORT, () => {
   console.log(`🚀 Server running at http://localhost:${PORT}`);
 });
 
-const fs = require("fs");
+/*const fs = require("fs");
 
 app.post("/contact", (req, res) => {
   const { name, email, message } = req.body;
@@ -63,3 +93,4 @@ app.post("/contact", (req, res) => {
     // <-- Add this closing brace for the route handler
   });
 });
+*/
