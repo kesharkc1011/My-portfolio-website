@@ -3,12 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>KESHAR KC</title>
+    <title>KESHAR KC - Futuristic Portfolio</title>
     <link rel="stylesheet" href="/css/style.css" />
-    <head>
-      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-      <script src="/js/skillsChart.js" defer></script>
-    </head>
+    <!-- Updated Chart.js and added defer to script -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <script src="/js/skillsChart.js" defer></script>
   </head>
   <body>
     <!-- HERO -->
@@ -24,6 +23,7 @@
         href="https://github.com/kesharkc1011"
         target="_blank"
         class="icon-btn"
+        aria-label="GitHub Profile"
       >
         <img
           src="https://cdn-icons-png.flaticon.com/512/25/25231.png"
@@ -34,6 +34,7 @@
         href="https://www.linkedin.com/in/keshar-kc-586836319/"
         target="_blank"
         class="icon-btn"
+        aria-label="LinkedIn Profile"
       >
         <img
           src="https://cdn-icons-png.flaticon.com/512/174/174857.png"
@@ -44,6 +45,7 @@
         href="https://www.instagram.com/keshar_dope/"
         target="_blank"
         class="icon-btn"
+        aria-label="Instagram Profile"
       >
         <img
           src="https://api.iconify.design/fa-brands:instagram.svg?color=%23ffffff"
@@ -54,6 +56,7 @@
         href="https://www.facebook.com/keshar.kc.183936"
         target="_blank"
         class="icon-btn"
+        aria-label="Facebook Profile"
       >
         <img
           src="https://api.iconify.design/fa-brands:facebook.svg?color=%23ffffff"
@@ -68,14 +71,16 @@
       <p>
         Currently pursuing a Bachelor's in Electronics Communication and
         Information Engineering at Kathmandu Engineering College. Passionate
-        about software engineering, IoT, and AI technologies.
+        about software engineering, IoT, and AI technologies. I thrive on
+        solving complex problems and creating innovative solutions that bridge
+        the gap between technology and real-world applications.
       </p>
     </section>
 
     <!-- SKILLS -->
     <section class="skills">
       <h2>Skills</h2>
-      <canvas id="skillsChart" width="400" height="400"></canvas>
+      <canvas id="skillsChart" width="500" height="500"></canvas>
     </section>
 
     <!-- EDUCATION -->
@@ -85,7 +90,11 @@
         <div class="timeline-item">
           <span class="date">2022 - 2026</span>
           <p>
-            Bachelor's of Electronics Communication and Information Engineering
+            <strong
+              >Bachelor's of Electronics Communication and Information
+              Engineering</strong
+            ><br />
+            Kathmandu Engineering College
           </p>
         </div>
       </div>
@@ -97,15 +106,18 @@
       <div class="timeline">
         <div class="timeline-item">
           <span class="date">Apr 2025 - May 2025</span>
-          <p>Internship - Nepal telecom</p>
+          <p><strong>Internship</strong> - Nepal Telecom</p>
         </div>
         <div class="timeline-item">
           <span class="date">Nov 2024 - Jan 2025</span>
-          <p>Junior Software Developer Intern - It Sansaar Pvt Ltd</p>
+          <p>
+            <strong>Junior Software Developer Intern</strong> - IT Sansaar Pvt
+            Ltd
+          </p>
         </div>
         <div class="timeline-item">
           <span class="date">Nov 2024 - Jan 2025</span>
-          <p>Manager - Lakhey Wears Pvt Ltd</p>
+          <p><strong>Manager</strong> - Lakhey Wears Pvt Ltd</p>
         </div>
       </div>
     </section>
@@ -116,14 +128,15 @@
       <ul>
         <li>
           <strong>Portfolio Website:</strong> Personal site to showcase skills
-          and projects.
+          and projects with modern design and interactive elements.
         </li>
         <li>
-          <strong>Todo App:</strong> CRUD app with React and local storage.
+          <strong>Todo App:</strong> Full-featured CRUD application built with
+          React and local storage for task management.
         </li>
         <li>
-          <strong>Home Automation:</strong> Smart system built with Django, face
-          recognition, and IoT.
+          <strong>Home Automation:</strong> Smart home system built with Django,
+          featuring face recognition and IoT device integration.
         </li>
       </ul>
     </section>
@@ -131,7 +144,7 @@
     <!-- CONTACT -->
     <section class="contact">
       <h2>Contact Me</h2>
-      <form id="/contactForm" action="/send" method="POST">
+      <form id="contactForm" action="/send" method="POST">
         <input type="text" name="name" placeholder="Your Name" required />
         <input type="email" name="email" placeholder="Your Email" required />
         <textarea name="message" placeholder="Your Message" required></textarea>
@@ -145,14 +158,18 @@
             const formData = new FormData(this);
             const data = Object.fromEntries(formData);
 
-            const res = await fetch("/send", {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify(data),
-            });
+            try {
+              const res = await fetch("/send", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(data),
+              });
 
-            const result = await res.json();
-            alert(result.message);
+              const result = await res.json();
+              alert(result.message || "Message sent successfully!");
+            } catch (error) {
+              alert("Error sending message. Please try again.");
+            }
           });
       </script>
     </section>
